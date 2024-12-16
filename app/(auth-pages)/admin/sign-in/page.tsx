@@ -8,6 +8,7 @@ import Link from "next/link";
 
 export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
+
   return (
     <Card className=" w-full max-w-[20rem] mx-auto p-5 shadow-md">
       <form className="flex-1 flex flex-col">
@@ -33,6 +34,7 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
           <SubmitButton pendingText="Signing In..." formAction={signInAction}>
             Sign in
           </SubmitButton>
+          <FormMessage message={searchParams} />
         </div>
       </form>
     </Card>
