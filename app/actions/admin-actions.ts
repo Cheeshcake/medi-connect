@@ -29,10 +29,12 @@ export const signInAction = async (formData: FormData) => {
     .select("id_user")
     .eq("id_user", userId);
 
-  if (adminError || !adminData) {
+  if (adminError || !adminData || adminData.length === 0) {
     await supabase.auth.signOut();
-    return encodedRedirect("error", "/admin/sign-in", adminError.message);
+    return encodedRedirect("error", "/admin/sign-in", adminError?.message || "User not found");
   }
+
+  console.log("adminData", adminData);
 
   return redirect("/protected/admin");
 };
@@ -61,11 +63,13 @@ export const signUpAction = async (formData: FormData) => {
     return encodedRedirect("error", "/admin/sign-up", "Failed to create user");
   }
 
-  const { error: adminError } = await supabase.from("admin").insert({
-    id_user: userId,
-    name: name,
-    phone: phone,
-  });
+  const { error: adminError } = await supabase.from("admin").insert([
+    {
+        id_user: userId,
+        name: name,
+        phone: phone,
+      }
+  ]).select();
 
   if (adminError) {
     await supabase.auth.admin.deleteUser(userId);
