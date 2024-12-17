@@ -44,7 +44,6 @@ export const signUpAction = async (formData: FormData) => {
   const last_name = formData.get("last_name") as string;
   const phone = formData.get("phone") as string;
 
-
   const supabase = await createClient();
 
   const { data: userData, error: signUpError } = await supabase.auth.signUp({
@@ -59,7 +58,11 @@ export const signUpAction = async (formData: FormData) => {
   const userId = userData.user?.id;
 
   if (!userId) {
-    return encodedRedirect("error", "/patient/sign-up", "Failed to create user");
+    return encodedRedirect(
+      "error",
+      "/patient/sign-up",
+      "Failed to create user"
+    );
   }
 
   const { error: patientError } = await supabase.from("patient").insert({
@@ -79,4 +82,38 @@ export const signUpAction = async (formData: FormData) => {
   );
 };
 
+export const getPatientInfoAction = async () => {
+  const supabase = await createClient();
 
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    return {
+      error: userError?.message || "User not authenticated",
+      data: null,
+    };
+  }
+
+  const userId = user.id;
+
+  const { data: patientData, error: patientError } = await supabase
+    .from("patient")
+    .select("first_name, last_name, phone")
+    .eq("id_user", userId)
+    .single();
+
+  if (patientError || !patientData) {
+    return {
+      error: patientError?.message || "Patient details not found",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: patientData,
+  };
+};

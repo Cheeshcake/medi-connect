@@ -1,5 +1,4 @@
 "use client";
-
 import { AppSidebar } from "@/components/doctor/sidebar/app-sidebar";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import {
@@ -16,18 +15,20 @@ import {
 } from "@/components/ui/sidebar";
 import { ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
-
-// Define the shape of our breadcrumb items
 interface BreadcrumbItem {
   title: string;
   href: string;
 }
+
+
 
 export default function DoctorLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
+  
   const pathname = usePathname();
   const generateBreadcrumbs = (): BreadcrumbItem[] => {
     const paths = pathname.split("/").filter((path) => path !== "protected");

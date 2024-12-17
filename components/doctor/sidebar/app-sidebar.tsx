@@ -29,7 +29,7 @@ const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
-    avatar: "https://api.dicebear.com/9.x/lorelei/svg?seed=Felix",
+    avatar: "https://api.dicebear.com/9.x/lorelei/svg?backgroundType=gradientLinear,solid",
   },
   navMain: [
     {
@@ -38,11 +38,7 @@ const data = {
       items: [
         {
           title: "Dashboard",
-          href: "protected/doctor/dashboard",
-        },
-        {
-          title: "Analytics",
-          href: "/dashboard/analytics",
+          href: "/protected/doctor/dashboard",
         },
       ],
     },

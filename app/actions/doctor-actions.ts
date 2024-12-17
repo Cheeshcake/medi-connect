@@ -77,3 +77,39 @@ export const signUpAction = async (formData: FormData) => {
     "/doctor/sign-in?message=Account created successfully. Please sign in."
   );
 };
+
+export const getDoctorInfoAction = async () => {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    return {
+      error: userError?.message || "User not authenticated",
+      data: null,
+    };
+  }
+
+  const userId = user.id;
+
+  const { data: doctorData, error: doctorError } = await supabase
+    .from("doctor")
+    .select("*")
+    .eq("id_user", userId)
+    .single();
+
+  if (doctorError || !doctorData) {
+    return {
+      error: doctorError?.message || "Patient details not found",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: doctorData,
+  };
+};
