@@ -127,7 +127,10 @@ const Dock = ({
         {items.map((item, index) => (
           <animated.div
             key={item.label}
-            className={cn("dock-item", pathname === item.href && "!bg-primary")}
+            className={cn(
+              "dock-item",
+              pathname === item.href && "!bg-primary text-white"
+            )}
             style={scaleSpring(index)}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}

@@ -18,7 +18,6 @@
     transform 0.2s ease-out;
 }
 
-/* Dock item styles */
 .dock-item {
   background-color: rgba(255, 255, 255, 0.1);
   margin: 5px;
@@ -47,7 +46,6 @@
   transition: background-color 0.3s ease;
 }
 
-/* Positioning styles */
 .dock-container.left {
   top: 0;
   left: 1em;
