@@ -134,3 +134,24 @@ export const getPatientsAction = async () => {
   };
 };
 
+export const getPatientByIdAction = async (id: string) => {
+  const supabase = await createClient();
+
+  const { data: patientData, error: patientError } = await supabase
+    .from("patient")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (patientError || !patientData) {
+    return {
+      error: patientError?.message || "Patient not found",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: patientData,
+  };
+}
