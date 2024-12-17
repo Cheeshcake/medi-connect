@@ -15,25 +15,22 @@ import {
 } from "@/components/ui/sidebar";
 import { ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { QueryClient, QueryClientProvider } from "react-query";
 interface BreadcrumbItem {
   title: string;
   href: string;
 }
-
-
 
 export default function DoctorLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-
-  
+  const queryClient = new QueryClient();
   const pathname = usePathname();
   const generateBreadcrumbs = (): BreadcrumbItem[] => {
     const paths = pathname.split("/").filter((path) => path !== "protected");
     let currentPath = "";
-    
 
     return paths.map((path) => {
       currentPath += `/${path}`;
@@ -47,32 +44,37 @@ export default function DoctorLayout({
   const breadcrumbItems = generateBreadcrumbs();
 
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center justify-between gap-2 pe-5 border-b">
-          <div className="flex items-center gap-2 px-3">
-            <SidebarTrigger />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                {breadcrumbItems.map((item, index) => (
-                  <BreadcrumbItem key={item.href}>
-                    <BreadcrumbLink href={item.href}>
-                      {item.title}
-                    </BreadcrumbLink>
-                    {(index < breadcrumbItems.length - 1 && index != 0) && (
-                      <ChevronRight orientation="vertical" className="mx-2 h-4" />
-                    )}
-                  </BreadcrumbItem>
-                ))}
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-          <ThemeSwitcher />
-        </header>
-        <main className="flex-1 overflow-y-auto">{children}</main>
-      </SidebarInset>
-    </SidebarProvider>
+    <QueryClientProvider client={queryClient}>
+      <SidebarProvider>
+        <AppSidebar />
+        <SidebarInset>
+          <header className="flex h-16 shrink-0 items-center justify-between gap-2 pe-5 border-b">
+            <div className="flex items-center gap-2 px-3">
+              <SidebarTrigger />
+              <Separator orientation="vertical" className="mr-2 h-4" />
+              <Breadcrumb>
+                <BreadcrumbList>
+                  {breadcrumbItems.map((item, index) => (
+                    <BreadcrumbItem key={item.href}>
+                      <BreadcrumbLink href={item.href}>
+                        {item.title}
+                      </BreadcrumbLink>
+                      {index < breadcrumbItems.length - 1 && index != 0 && (
+                        <ChevronRight
+                          orientation="vertical"
+                          className="mx-2 h-4"
+                        />
+                      )}
+                    </BreadcrumbItem>
+                  ))}
+                </BreadcrumbList>
+              </Breadcrumb>
+            </div>
+            <ThemeSwitcher />
+          </header>
+          <main className="flex-1 overflow-y-auto">{children}</main>
+        </SidebarInset>
+      </SidebarProvider>
+    </QueryClientProvider>
   );
 }
