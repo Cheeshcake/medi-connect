@@ -25,7 +25,9 @@ const Layout = ({ children }: Props) => {
         <UserNav />
       </div>
       <Dock items={PATIENT_NAVIGATION_ITEMS} position="left" />
-      <div className="ml-[5.5rem] p-5">{children}</div>
+      <div className=" py-5 px-14 md:pl-[6.5rem] max-w-[80rem] w-full mx-auto">
+        {children}
+      </div>
     </div>
   );
 };
