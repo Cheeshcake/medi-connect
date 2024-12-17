@@ -11,7 +11,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-patient-background h-screen">
       <div className="w-full flex justify-between items-center py-3 px-6">
         <Link href={"/protected/patient"} className="flex justify-center">
           <Image

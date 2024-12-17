@@ -86,7 +86,7 @@ const UserDropdown = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         onMouseLeave={() => handleCollapse()}
-        className="w-56 border bg-white shadow-lg dark:border-white/5 dark:bg-[#27283d]"
+        className="w-56 border bg-white shadow-lg dark:border-white/5 dark:bg-white/10"
         align="end"
         forceMount
       >
