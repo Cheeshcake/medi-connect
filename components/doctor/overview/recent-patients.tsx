@@ -4,27 +4,27 @@ const recentPatients = [
   {
     name: "Olivia Johnson",
     email: "olivia.johnson@example.com",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://api.dicebear.com/9.x/micah/svg",
   },
   {
     name: "William Davis",
     email: "william.davis@example.com",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://api.dicebear.com/9.x/micah/svg",
   },
   {
     name: "Emma Wilson",
     email: "emma.wilson@example.com",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://api.dicebear.com/9.x/micah/svg",
   },
   {
     name: "James Brown",
     email: "james.brown@example.com",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://api.dicebear.com/9.x/micah/svg",
   },
   {
     name: "Sophia Lee",
     email: "sophia.lee@example.com",
-    avatar: "/placeholder.svg?height=32&width=32",
+    avatar: "https://api.dicebear.com/6.x/avataaars/svg",
   },
 ];
 
