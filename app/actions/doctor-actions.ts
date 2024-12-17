@@ -113,3 +113,24 @@ export const getDoctorInfoAction = async () => {
     data: doctorData,
   };
 };
+
+export const getPatientsAction = async () => {
+  const supabase = await createClient();
+
+  const { data: patientsData, error: patientsError } = await supabase
+    .from("patient")
+    .select("id, id_user, created_at, first_name, last_name, phone");
+
+  if (patientsError || !patientsData) {
+    return {
+      error: patientsError?.message || "Patients not found",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: patientsData,
+  };
+};
+

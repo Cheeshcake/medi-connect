@@ -26,67 +26,40 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 import Link from "next/link";
 import { Eye } from "lucide-react";
+import { useGetPatients } from "@/hooks/doctor/use-get-patients";
+import { PatientsTableSkeleton } from "./patients-table-skeleton";
 
 interface Patient {
-  id: string;
-  name: string;
-  age: number;
-  gender: "Male" | "Female" | "Other";
-  contactNumber: string;
-  lastVisit: string;
+  id: number;
+  id_user: string;
+  created_at: string;
+  first_name: string;
+  last_name: string;
+  phone: string;
 }
-
-const data: Patient[] = [
-  {
-    id: "1",
-    name: "John Doe",
-    age: 35,
-    gender: "Male",
-    contactNumber: "123-456-7890",
-    lastVisit: "2023-06-15",
-  },
-  {
-    id: "2",
-    name: "Jane Smith",
-    age: 28,
-    gender: "Female",
-    contactNumber: "987-654-3210",
-    lastVisit: "2023-06-10",
-  },
-  {
-    id: "3",
-    name: "Jane Doe",
-    age: 28,
-    gender: "Other",
-    contactNumber: "987-654-3210",
-    lastVisit: "2023-06-10",
-  },
-];
 
 export const columns: ColumnDef<Patient>[] = [
   {
-    accessorKey: "name",
-    header: "Name",
+    accessorKey: "first_name",
+    header: "First Name",
   },
   {
-    accessorKey: "age",
-    header: "Age",
+    accessorKey: "last_name",
+    header: "Last Name",
   },
   {
-    accessorKey: "gender",
-    header: "Gender",
+    accessorKey: "phone",
+    header: "Phone Number",
   },
   {
-    accessorKey: "contactNumber",
-    header: "Contact Number",
+    accessorKey: "created_at",
+    header: "Created At",
+    cell: ({ row }) => {
+      return new Date(row.original.created_at).toLocaleDateString();
+    },
   },
-  //   {
-  //     accessorKey: "lastVisit",
-  //     header: "Last Visit",
-  //   },
   {
     id: "actions",
     cell: ({ row }) => {
@@ -107,9 +80,10 @@ export const columns: ColumnDef<Patient>[] = [
 export function AllPatientsTable() {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnVisibility, setColumnVisibility] = useState({});
+  const { data, isLoading, isError, error } = useGetPatients();
 
   const table = useReactTable({
-    data,
+    data: data?.data ?? [],
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -122,14 +96,22 @@ export function AllPatientsTable() {
     },
   });
 
+  if (isLoading) {
+    return <PatientsTableSkeleton />;
+  }
+
+  if (isError) {
+    return <div>Error: {error?.message}</div>;
+  }
+
   return (
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter patients..."
+          placeholder="Filter by first name..."
           className="max-w-sm"
           onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
+            table.getColumn("first_name")?.setFilterValue(event.target.value)
           }
         />
         <DropdownMenu>
