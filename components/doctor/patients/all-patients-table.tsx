@@ -56,7 +56,14 @@ const data: Patient[] = [
     contactNumber: "987-654-3210",
     lastVisit: "2023-06-10",
   },
-  // Add more mock data as needed
+  {
+    id: "3",
+    name: "Jane Doe",
+    age: 28,
+    gender: "Other",
+    contactNumber: "987-654-3210",
+    lastVisit: "2023-06-10",
+  },
 ];
 
 export const columns: ColumnDef<Patient>[] = [
@@ -76,18 +83,18 @@ export const columns: ColumnDef<Patient>[] = [
     accessorKey: "contactNumber",
     header: "Contact Number",
   },
-//   {
-//     accessorKey: "lastVisit",
-//     header: "Last Visit",
-//   },
+  //   {
+  //     accessorKey: "lastVisit",
+  //     header: "Last Visit",
+  //   },
   {
     id: "actions",
     cell: ({ row }) => {
       const patient = row.original;
       return (
         <Link
-          className="flex items-center hover:text-primary hover:bg-primary-foreground border transition-colors duration-300 border-primary gap-2 bg-primary justify-center w-min px-2 py-2 rounded-xl"
-          href={`/patients/${patient.id}`}
+          className="flex items-center text-primary-foreground hover:text-primary hover:bg-primary-foreground border transition-colors duration-300 border-primary gap-2 bg-primary justify-center w-min px-2 py-2 rounded-xl"
+          href={`/protected/doctor/patients/${patient.id}`}
         >
           <Eye strokeWidth={1.5} />
           View

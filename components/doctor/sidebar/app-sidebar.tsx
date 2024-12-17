@@ -38,7 +38,7 @@ const data = {
       items: [
         {
           title: "Dashboard",
-          href: "/dashboard",
+          href: "protected/doctor/dashboard",
         },
         {
           title: "Analytics",
