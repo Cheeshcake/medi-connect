@@ -29,7 +29,7 @@ export default function PatientPage({
         {isLoading ? (
           <div>Loading...</div>
         ) : isError && error ? (
-          <div>erreur</div>
+          <div>{(error as Error)?.message}</div>
         ) : patient ? (
           <PatientDetails patient={patient} />
         ) : (

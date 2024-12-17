@@ -101,7 +101,7 @@ export function AllPatientsTable() {
   }
 
   if (isError) {
-    return <div>Error</div>;
+    return <div>{(error as Error)?.message}</div>;
   }
 
   return (
