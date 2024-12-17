@@ -1,5 +1,12 @@
 import * as React from "react";
-import { GalleryVerticalEnd } from "lucide-react";
+import {
+  Calendar,
+  DollarSign,
+  GalleryVerticalEnd,
+  LayoutDashboard,
+  Pill,
+  Users,
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -16,72 +23,74 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { NavUser } from "./nav-user";
+import Link from "next/link";
 
 const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
-    avatar: "https://api.dicebear.com/9.x/lorelei/svg",
+    avatar: "https://api.dicebear.com/9.x/lorelei/svg?backgroundType=gradientLinear,solid",
   },
   navMain: [
     {
       title: "Overview",
-      url: "#",
+      icon: <LayoutDashboard />,
       items: [
         {
           title: "Dashboard",
-          url: "#",
-        },
-        {
-          title: "Analytics",
-          url: "#",
-        },
-        {
-          title: "Reports",
-          url: "#",
+          href: "/protected/doctor/dashboard",
         },
       ],
     },
     {
       title: "Patients",
-      url: "#",
+      icon: <Users />,
       items: [
         {
           title: "All Patients",
-          url: "#",
-          isActive: true,
+          href: "/protected/doctor/patients",
         },
         {
-          title: "Add New",
-          url: "#",
+          title: "Patient Records",
+          href: "/protected/doctor/patients/records",
         },
       ],
     },
     {
       title: "Appointments",
-      url: "#",
+      icon: <Calendar />,
       items: [
         {
-          title: "All Appointments",
-          url: "#",
-        },
-        {
-          title: "Add New",
-          url: "#",
+          title: "List View",
+          href: "/protected/doctor/appointments/list",
         },
       ],
     },
     {
       title: "Prescriptions",
-      url: "#",
+      icon: <Pill />,
       items: [
         {
           title: "All Prescriptions",
-          url: "#",
+          href: "/protected/doctor/prescriptions",
         },
         {
-          title: "Add New",
-          url: "#",
+          title: "New Prescription",
+          href: "/protected/doctor/prescriptions/new",
+        },
+        {
+          title: "Medication History",
+          href: "/protected/doctor/prescriptions/history",
+        },
+      ],
+    },
+    {
+      title: "Billing",
+      icon: <DollarSign />,
+      items: [
+        {
+          title: "Invoices",
+          href: "/protected/doctor/billing/invoices",
         },
       ],
     },
@@ -113,16 +122,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             {data.navMain.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild>
-                  <a href={item.url} className="font-medium">
+                  <Link href="#" className="font-medium">
+                    {item.icon}
                     {item.title}
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
                 {item.items?.length ? (
                   <SidebarMenuSub>
                     {item.items.map((item) => (
                       <SidebarMenuSubItem key={item.title}>
-                        <SidebarMenuSubButton asChild isActive={item.isActive}>
-                          <a href={item.url}>{item.title}</a>
+                        <SidebarMenuSubButton asChild isActive={false}>
+                          <a href={item.href}>{item.title}</a>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     ))}
@@ -134,7 +144,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser/>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

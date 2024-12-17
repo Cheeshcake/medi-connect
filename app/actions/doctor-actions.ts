@@ -77,3 +77,81 @@ export const signUpAction = async (formData: FormData) => {
     "/doctor/sign-in?message=Account created successfully. Please sign in."
   );
 };
+
+export const getDoctorInfoAction = async () => {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    return {
+      error: userError?.message || "User not authenticated",
+      data: null,
+    };
+  }
+
+  const userId = user.id;
+
+  const { data: doctorData, error: doctorError } = await supabase
+    .from("doctor")
+    .select("*")
+    .eq("id_user", userId)
+    .single();
+
+  if (doctorError || !doctorData) {
+    return {
+      error: doctorError?.message || "Patient details not found",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: doctorData,
+  };
+};
+
+export const getPatientsAction = async () => {
+  const supabase = await createClient();
+
+  const { data: patientsData, error: patientsError } = await supabase
+    .from("patient")
+    .select("id, id_user, created_at, first_name, last_name, phone");
+
+  if (patientsError || !patientsData) {
+    return {
+      error: patientsError?.message || "Patients not found",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: patientsData,
+  };
+};
+
+export const getPatientByIdAction = async (id: string) => {
+  const supabase = await createClient();
+
+  const { data: patientData, error: patientError } = await supabase
+    .from("patient")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (patientError || !patientData) {
+    return {
+      error: patientError?.message || "Patient not found",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: patientData,
+  };
+}

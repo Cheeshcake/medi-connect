@@ -1,7 +1,7 @@
 import Dashboard from "@/components/doctor/overview/dashboard";
 import React from "react";
 
-const Page = () => {
+const page = () => {
   return (
     <div>
       <Dashboard />
@@ -9,4 +9,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default page;
