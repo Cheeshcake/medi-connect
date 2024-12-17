@@ -8,8 +8,8 @@ import { Edit2, Check } from "lucide-react";
 import { TPatientInfo } from "@/types/patient";
 
 type ProfileCardProps = {
-  initialData: TPatientInfo | never[];
-  onSave: (data: TPatientInfo | never[]) => void;
+  initialData: TPatientInfo;
+  onSave: (data: TPatientInfo) => void;
 };
 
 const ProfileCard = ({ initialData, onSave }: ProfileCardProps) => {

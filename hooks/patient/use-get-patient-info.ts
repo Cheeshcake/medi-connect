@@ -9,7 +9,7 @@ export const useGetPatientInfo = () => {
   });
 
   return {
-    patientInfo: data?.data || [],
+    patientInfo: data?.data! || [],
     patientError: error,
     isGettingPatient: isLoading,
   };
