@@ -1,4 +1,4 @@
-import { signInAction } from "@/app/actions/doctor-actions";
+import { signInAction } from "@/app/actions";
 import { FormMessage, Message } from "@/components/form-message";
 import { SubmitButton } from "@/components/submit-button";
 import { Card } from "@/components/ui/card";
@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 
-export default async function Page(props: { searchParams: Promise<Message> }) {
+export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
 
   return (
@@ -15,10 +15,7 @@ export default async function Page(props: { searchParams: Promise<Message> }) {
         <h1 className="text-2xl font-medium">Sign in</h1>
         <p className="text-sm text-foreground">
           Don't have an account?{" "}
-          <Link
-            className="text-primary font-medium underline"
-            href="/doctor/sign-up"
-          >
+          <Link className="text-primary font-medium underline" href="/sign-up">
             Sign up
           </Link>
         </p>

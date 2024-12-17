@@ -1,4 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function ProtectedPage() {
@@ -14,7 +15,9 @@ export default async function ProtectedPage() {
 
   return (
     <div className="flex-1 w-full flex flex-col gap-12 text-center">
-      Welcome {user.email?.split("@")[0]}
+      <Link href={"/protected/admin"}>admin</Link>
+      <Link href={"/protected/doctor"}>doctor</Link>
+      <Link href={"/protected/patient"}>patient</Link>
     </div>
   );
 }
