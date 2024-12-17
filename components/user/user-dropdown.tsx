@@ -1,5 +1,6 @@
 "use client";
 
+import { signOutAction } from "@/app/actions";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
   DropdownMenu,
@@ -113,7 +114,7 @@ const UserDropdown = () => {
         </DropdownMenuGroup>
         <DropdownMenuSeparator className="h-[0.5px] bg-neutral-200 dark:bg-white/20" />
         <DropdownMenuItem
-          //   onClick={logout}
+          onClick={signOutAction}
           //   disabled={isLoggingOut}
           className="text-sm font-medium text-neutral-800 hover:bg-muted dark:text-white dark:hover:bg-white/10"
         >

@@ -54,6 +54,7 @@ const config = {
         },
         patient: {
           background: "hsl(var(--patient-background))",
+          "secondary-text": "hsl(var(--patient-secondary-text))",
         },
       },
       borderRadius: {

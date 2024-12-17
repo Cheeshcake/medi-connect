@@ -32,6 +32,7 @@
 
     /*patient colors*/
     --patient-background: 221 100% 92%;
+    --patient-secondary-text: 215 14% 34%;
   }
 
   .dark {
@@ -62,6 +63,7 @@
 
     /*patient colors*/
     --patient-background: 221 82% 4%;
+    --patient-secondary-text: 216 12% 84%;
   }
 }
 
