@@ -11,7 +11,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className="flex flex-col bg-patient-background h-screen">
+    <div className="flex flex-col bg-patient-bg-gradient h-screen ">
       <div className="w-full flex justify-between items-center py-3 px-6">
         <Link href={"/protected/patient"} className="flex justify-center">
           <Image
@@ -25,7 +25,7 @@ const Layout = ({ children }: Props) => {
         <UserNav />
       </div>
       <Dock items={PATIENT_NAVIGATION_ITEMS} position="left" />
-      <div className=" py-5 px-14 md:pl-[6.5rem] max-w-[80rem] w-full mx-auto">
+      <div className=" py-5 px-14 md:pl-[6.5rem] max-w-[80rem] w-full mx-auto z-10">
         {children}
       </div>
     </div>

@@ -27,6 +27,7 @@ const config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          100: "hsl(var(--primary-100))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -71,6 +72,10 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+      },
+      backgroundImage: {
+        "patient-bg-gradient":
+          "linear-gradient(-45deg, hsl(var(--primary-100)) 0%, hsl(var(--patient-background)) 100%)",
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

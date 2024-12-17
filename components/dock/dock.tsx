@@ -113,7 +113,7 @@ const Dock = ({
 
   return (
     <div
-      className={`dock-container ${currentPosition}`}
+      className={`dock-container z-10 ${currentPosition}`}
       onMouseEnter={handleParentMouseEnter}
       onMouseLeave={handleParentMouseLeave}
     >
