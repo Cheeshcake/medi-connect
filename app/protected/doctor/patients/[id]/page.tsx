@@ -28,8 +28,8 @@ export default function PatientPage({
       <div className="container mx-auto py-10">
         {isLoading ? (
           <div>Loading...</div>
-        ) : isError ? (
-          <div>{error?.message}</div>
+        ) : isError && error ? (
+          <div>erreur</div>
         ) : patient ? (
           <PatientDetails patient={patient} />
         ) : (
