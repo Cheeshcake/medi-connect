@@ -2,6 +2,7 @@ import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import TopLoader from "@/components/toploader";
+import { Toaster } from "@/components/ui/sonner";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -31,6 +32,7 @@ export default function RootLayout({
           <main className="min-h-screen flex flex-col items-center">
             <div className="flex flex-col gap-20 w-full">{children}</div>
           </main>
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>

@@ -4,15 +4,16 @@ import { motion } from "framer-motion";
 import SpotlightCard from "../spotlight/spotlight-card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Edit2, Check } from "lucide-react";
+import { Edit2, Check, Loader } from "lucide-react";
 import { TPatientInfo } from "@/types/patient";
 
 type ProfileCardProps = {
   initialData: TPatientInfo;
   onSave: (data: TPatientInfo) => void;
+  isLoading: boolean;
 };
 
-const ProfileCard = ({ initialData, onSave }: ProfileCardProps) => {
+const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [data, setData] = useState(initialData);
 
@@ -51,8 +52,11 @@ const ProfileCard = ({ initialData, onSave }: ProfileCardProps) => {
               variant="ghost"
               size="icon"
               onClick={isEditing ? handleSave : handleEdit}
+              disabled={isLoading}
             >
-              {isEditing ? (
+              {isLoading ? (
+                <Loader className=" animate-spin w-4 h-4" />
+              ) : isEditing ? (
                 <Check className="h-4 w-4" />
               ) : (
                 <Edit2 className="h-4 w-4" />

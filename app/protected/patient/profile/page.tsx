@@ -32,7 +32,11 @@ const Page = () => {
       {isGettingPatient ? (
         <ProfileCardSkeleton />
       ) : (
-        <ProfileCard initialData={patientInfo} onSave={handleSave} />
+        <ProfileCard
+          initialData={patientInfo}
+          onSave={handleSave}
+          isLoading={isEditingProfile}
+        />
       )}
     </div>
   );
