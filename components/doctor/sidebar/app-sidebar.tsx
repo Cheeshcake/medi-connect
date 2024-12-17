@@ -29,7 +29,7 @@ const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
-    avatar: "https://api.dicebear.com/9.x/lorelei/svg",
+    avatar: "https://api.dicebear.com/9.x/lorelei/svg?seed=Felix",
   },
   navMain: [
     {
@@ -44,10 +44,6 @@ const data = {
           title: "Analytics",
           href: "/dashboard/analytics",
         },
-        {
-          title: "Reports",
-          href: "/dashboard/reports",
-        },
       ],
     },
     {
@@ -56,11 +52,11 @@ const data = {
       items: [
         {
           title: "All Patients",
-          href: "/patients",
+          href: "/protected/doctor/patients",
         },
         {
           title: "Patient Records",
-          href: "/patients/records",
+          href: "/protected/doctor/patients/records",
         },
       ],
     },
@@ -70,7 +66,7 @@ const data = {
       items: [
         {
           title: "List View",
-          href: "/appointments/list",
+          href: "/protected/doctor/appointments/list",
         },
       ],
     },
@@ -80,15 +76,15 @@ const data = {
       items: [
         {
           title: "All Prescriptions",
-          href: "/prescriptions",
+          href: "/protected/doctor/prescriptions",
         },
         {
           title: "New Prescription",
-          href: "/prescriptions/new",
+          href: "/protected/doctor/prescriptions/new",
         },
         {
           title: "Medication History",
-          href: "/prescriptions/history",
+          href: "/protected/doctor/prescriptions/history",
         },
       ],
     },
@@ -98,7 +94,7 @@ const data = {
       items: [
         {
           title: "Invoices",
-          href: "/billing/invoices",
+          href: "/protected/doctor/billing/invoices",
         },
       ],
     },
