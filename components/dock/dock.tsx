@@ -5,6 +5,7 @@ import "./dock.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { DockThemeSwitcher } from "./dock-theme-switcher";
 
 type DockItem = {
   label: string;
@@ -134,6 +135,15 @@ const Dock = ({
             <Link href={item.href}>{item.icon}</Link>
           </animated.div>
         ))}
+        <animated.div
+          key="theme-switcher"
+          className="dock-item"
+          style={scaleSpring(items.length)}
+          onMouseEnter={() => handleMouseEnter(items.length)}
+          onMouseLeave={handleMouseLeave}
+        >
+          <DockThemeSwitcher />
+        </animated.div>
       </animated.div>
     </div>
   );
