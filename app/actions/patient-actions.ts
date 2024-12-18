@@ -1,4 +1,5 @@
 "use server";
+import { GetPatientInfoResponse } from "@/types/patient";
 import { createClient } from "@/utils/supabase/server";
 import { encodedRedirect } from "@/utils/utils";
 import { redirect } from "next/navigation";
@@ -82,7 +83,48 @@ export const signUpAction = async (formData: FormData) => {
   );
 };
 
-export const getPatientInfoAction = async () => {
+export const getPatientInfoAction =
+  async (): Promise<GetPatientInfoResponse> => {
+    const supabase = await createClient();
+
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      return {
+        error: userError?.message || "User not authenticated",
+        data: null,
+      };
+    }
+
+    const userId = user.id;
+
+    const { data: patientData, error: patientError } = await supabase
+      .from("patient")
+      .select("first_name, last_name, phone, illnesses")
+      .eq("id_user", userId)
+      .single();
+
+    if (patientError || !patientData) {
+      return {
+        error: patientError?.message || "Patient details not found",
+        data: null,
+      };
+    }
+
+    return {
+      error: null,
+      data: patientData,
+    };
+  };
+
+export const updatePatientInfoAction = async (formData: FormData) => {
+  const first_name = formData.get("first_name") as string;
+  const last_name = formData.get("last_name") as string;
+  const phone = formData.get("phone") as string;
+
   const supabase = await createClient();
 
   const {
@@ -93,27 +135,28 @@ export const getPatientInfoAction = async () => {
   if (userError || !user) {
     return {
       error: userError?.message || "User not authenticated",
-      data: null,
     };
   }
 
   const userId = user.id;
 
-  const { data: patientData, error: patientError } = await supabase
+  const { error: updateError } = await supabase
     .from("patient")
-    .select("first_name, last_name, phone")
-    .eq("id_user", userId)
-    .single();
+    .update({
+      first_name,
+      last_name,
+      phone,
+    })
+    .eq("id_user", userId);
 
-  if (patientError || !patientData) {
+  if (updateError) {
     return {
-      error: patientError?.message || "Patient details not found",
-      data: null,
+      error: updateError.message || "Failed to update patient information",
     };
   }
 
   return {
     error: null,
-    data: patientData,
+    message: "Patient information updated successfully",
   };
 };
