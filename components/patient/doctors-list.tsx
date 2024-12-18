@@ -57,7 +57,7 @@ export function DoctorsList({ doctors }: DoctorsListProps) {
             placeholder="Search doctors..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10"
+            className="pl-10  bg-patient-background "
           />
           <Search
             className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
@@ -65,10 +65,10 @@ export function DoctorsList({ doctors }: DoctorsListProps) {
           />
         </div>
         <Select value={selectedSpecialty} onValueChange={setSelectedSpecialty}>
-          <SelectTrigger className="w-full md:w-[200px]">
+          <SelectTrigger className="w-full md:w-[200px]  bg-patient-background ">
             <SelectValue placeholder="Select specialty" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-patient-background ">
             {specialties.map((specialty) => (
               <SelectItem key={specialty} value={specialty}>
                 {specialty}
@@ -78,14 +78,14 @@ export function DoctorsList({ doctors }: DoctorsListProps) {
         </Select>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredDoctors.map((doctor) => (
           <DoctorCard key={doctor.id} doctor={doctor} />
         ))}
       </div>
 
       {filteredDoctors.length === 0 && (
-        <p className="text-center text-muted-foreground mt-8">
+        <p className="text-center text-patient-secondary-text mt-8">
           No doctors found matching your criteria.
         </p>
       )}

@@ -7,7 +7,7 @@ import { DoctorsList } from "@/components/patient/doctors-list";
 const doctors = [
   {
     id: 1,
-    name: "Dr. Jane Smith",
+    name: "Jane Smith",
     specialty: "Cardiologist",
     rating: 4.8,
     location: "New York",
@@ -18,7 +18,7 @@ const doctors = [
   },
   {
     id: 2,
-    name: "Dr. John Doe",
+    name: "John Doe",
     specialty: "Dermatologist",
     rating: 4.5,
     location: "Los Angeles",
@@ -29,7 +29,7 @@ const doctors = [
   },
   {
     id: 3,
-    name: "Dr. Emily Brown",
+    name: "Emily Brown",
     specialty: "Pediatrician",
     rating: 4.9,
     location: "Chicago",
@@ -40,7 +40,7 @@ const doctors = [
   },
   {
     id: 4,
-    name: "Dr. Michael Lee",
+    name: "Michael Lee",
     specialty: "Orthopedic Surgeon",
     rating: 4.7,
     location: "Houston",
@@ -51,7 +51,7 @@ const doctors = [
   },
   {
     id: 5,
-    name: "Dr. Sarah Johnson",
+    name: "Sarah Johnson",
     specialty: "Neurologist",
     rating: 4.6,
     location: "Philadelphia",
