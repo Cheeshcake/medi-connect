@@ -1,6 +1,7 @@
 "use server";
 import { createClient } from "@/utils/supabase/server";
 import { encodedRedirect } from "@/utils/utils";
+import { get } from "http";
 import { redirect } from "next/navigation";
 
 export const signInAction = async (formData: FormData) => {
@@ -154,4 +155,29 @@ export const getPatientByIdAction = async (id: string) => {
     error: null,
     data: patientData,
   };
-}
+};
+
+export const getDoctorAppointmentsAction = async (id: string) => {
+  const supabase = await createClient();
+  const { data: appointmentsData, error: appointmentsError } = await supabase
+    .from("consultation")
+    .select(
+      `
+    *,
+    patient:id_patient(*)
+  `
+    )
+    // .eq("id_doctor", id)
+    .returns<Array<any>>();
+  if (appointmentsError || !appointmentsData) {
+    return {
+      error: appointmentsError?.message || "Appointments not found",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: appointmentsData,
+  };
+};

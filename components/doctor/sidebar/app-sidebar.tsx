@@ -63,7 +63,7 @@ const data = {
       items: [
         {
           title: "List View",
-          href: "/protected/doctor/appointments/list",
+          href: "/protected/doctor/appointments/",
         },
       ],
     },
