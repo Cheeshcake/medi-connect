@@ -80,8 +80,8 @@ const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
                 alt={`${data.first_name} ${data.last_name}`}
               />
               <AvatarFallback>
-                {data.first_name[0]}
-                {data.last_name[0]}
+                {data.first_name[0].toUpperCase()}
+                {data.last_name[0].toUpperCase()}
               </AvatarFallback>
             </Avatar>
             <div>
@@ -95,30 +95,33 @@ const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
           </div>
 
           <div className="grid grid-cols-2 gap-4 max-w-[30rem] mx-auto w-full">
-            {Object.entries(data).map(([key, value]) => (
-              <div key={key} className="flex flex-col">
-                <label
-                  htmlFor={key}
-                  className="text-sm font-medium text-patient-secondary-text"
-                >
-                  {key.charAt(0).toUpperCase() + key.slice(1)}
-                </label>
-                {isEditing ? (
-                  <Input
-                    type="text"
-                    id={key}
-                    name={key}
-                    value={value}
-                    onChange={handleChange}
-                    className="mt-1"
-                  />
-                ) : (
-                  <p className="mt-1 text-neutral-800 dark:text-gray-100">
-                    {value}
-                  </p>
-                )}
-              </div>
-            ))}
+            {Object.entries(data).map(
+              ([key, value]) =>
+                key !== "illnesses" && (
+                  <div key={key} className="flex flex-col">
+                    <label
+                      htmlFor={key}
+                      className="text-sm font-medium text-patient-secondary-text"
+                    >
+                      {key.charAt(0).toUpperCase() + key.slice(1)}
+                    </label>
+                    {isEditing ? (
+                      <Input
+                        type="text"
+                        id={key}
+                        name={key}
+                        value={value}
+                        onChange={handleChange}
+                        className="mt-1"
+                      />
+                    ) : (
+                      <p className="mt-1 text-neutral-800 dark:text-gray-100">
+                        {value}
+                      </p>
+                    )}
+                  </div>
+                )
+            )}
           </div>
 
           <div>

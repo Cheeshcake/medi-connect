@@ -13,7 +13,7 @@ export const PATIENT_NAVIGATION_ITEMS = [
   },
   {
     label: "Patient Profile",
-    icon: <Settings />,
+    icon: <User />,
     href: "/protected/patient/profile",
   },
 ];

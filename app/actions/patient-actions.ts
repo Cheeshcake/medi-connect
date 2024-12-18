@@ -103,7 +103,7 @@ export const getPatientInfoAction =
 
     const { data: patientData, error: patientError } = await supabase
       .from("patient")
-      .select("first_name, last_name, phone")
+      .select("first_name, last_name, phone, illnesses")
       .eq("id_user", userId)
       .single();
 

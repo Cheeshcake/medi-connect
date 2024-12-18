@@ -7,12 +7,14 @@ import { useEditPatient } from "@/hooks/patient/use-edit-patient";
 import { TPatientInfo } from "@/types/patient";
 import { PatientChart } from "@/components/patient/patient-chart";
 import { IllnessesAccordion } from "@/components/patient/illnesses-accordion";
+import IllnessesAccordionSkeleton from "@/components/patient/skeletons/illnesses-accordion-skeleton";
 
 const Page = () => {
   const { patientInfo, isGettingPatient } = useGetPatientInfo();
 
   const { editProfile, isEditingProfile } = useEditPatient();
 
+  console.log(patientInfo.illnesses);
   const handleSave = (newData: TPatientInfo) => {
     console.log("Saving updated patient data:", newData);
 
@@ -38,7 +40,11 @@ const Page = () => {
               isLoading={isEditingProfile}
             />
           )}
-          <IllnessesAccordion />
+          {isGettingPatient ? (
+            <IllnessesAccordionSkeleton />
+          ) : (
+            <IllnessesAccordion illnesses={patientInfo.illnesses} />
+          )}
         </div>
         <PatientChart />
       </div>
