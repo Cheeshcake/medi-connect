@@ -58,7 +58,7 @@ const SpotlightCard = ({
       className={`relative rounded-3xl border  overflow-hidden p-6 ${className}`}
     >
       <div
-        className="pointer-events-none blur-[150px] dark:blur-[120px] absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
+        className="pointer-events-none blur-[100px] dark:blur-[120px] absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
         style={{
           opacity,
           background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 60%)`,
