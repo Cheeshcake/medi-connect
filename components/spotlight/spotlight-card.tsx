@@ -31,7 +31,7 @@ const SpotlightCard = ({
 
   const handleFocus = () => {
     setIsFocused(true);
-    setOpacity(0.6);
+    setOpacity(0.4);
   };
 
   const handleBlur = () => {
@@ -40,7 +40,7 @@ const SpotlightCard = ({
   };
 
   const handleMouseEnter = () => {
-    setOpacity(0.6);
+    setOpacity(0.4);
   };
 
   const handleMouseLeave = () => {
@@ -58,10 +58,10 @@ const SpotlightCard = ({
       className={`relative rounded-3xl border  overflow-hidden p-6 ${className}`}
     >
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
+        className="pointer-events-none blur-[150px] dark:blur-[120px] absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
         style={{
           opacity,
-          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 80%)`,
+          background: `radial-gradient(circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 60%)`,
         }}
       />
       {children}

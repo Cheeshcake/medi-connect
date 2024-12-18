@@ -6,6 +6,7 @@ import ProfileCardSkeleton from "@/components/patient/skeletons/profile-card-ske
 import { useEditPatient } from "@/hooks/patient/use-edit-patient";
 import { TPatientInfo } from "@/types/patient";
 import { PatientChart } from "@/components/patient/patient-chart";
+import { IllnessesAccordion } from "@/components/patient/illnesses-accordion";
 
 const Page = () => {
   const { patientInfo, isGettingPatient } = useGetPatientInfo();
@@ -27,7 +28,7 @@ const Page = () => {
     <div className="mx-auto py-8">
       <h1 className="text-3xl text-primary font-bold mb-6">Profile Overview</h1>
       <div className="w-full flex flex-col gap-8">
-        <div className="flex gap-4 w-full">
+        <div className="flex flex-col md:flex-row gap-8 w-full">
           {isGettingPatient ? (
             <ProfileCardSkeleton />
           ) : (
@@ -37,7 +38,7 @@ const Page = () => {
               isLoading={isEditingProfile}
             />
           )}
-          <div className="w-fit">this is gonna be for the ilnesses</div>
+          <IllnessesAccordion />
         </div>
         <PatientChart />
       </div>

@@ -4,7 +4,16 @@ import { motion } from "framer-motion";
 import SpotlightCard from "../spotlight/spotlight-card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Edit2, Check, Loader } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Progress } from "@/components/ui/progress";
+import {
+  Edit2,
+  Check,
+  Loader,
+  Heart,
+  Activity,
+  Thermometer,
+} from "lucide-react";
 import { TPatientInfo } from "@/types/patient";
 
 type ProfileCardProps = {
@@ -43,11 +52,11 @@ const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
   };
 
   return (
-    <motion.div className="w-full max-w-[30rem] min-h-[11rem]" variants={item}>
-      <SpotlightCard className="bg-white/30 dark:bg-white/10 border-border  transition-all duration-300 ease-in-out hover:-translate-y-1.5">
+    <motion.div className="w-full md:max-w-[30rem]" variants={item}>
+      <SpotlightCard className="bg-white/30 dark:bg-white/10 border-border h-full transition-all duration-300 ease-in-out hover:-translate-y-1.5">
         <div className="z-10 relative flex flex-col gap-4 ">
           <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-semibold">Your Personal Info</h2>
+            <h2 className="text-2xl font-bold">Your Personal Info</h2>
             <Button
               variant="ghost"
               size="icon"
@@ -55,7 +64,7 @@ const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
               disabled={isLoading}
             >
               {isLoading ? (
-                <Loader className=" animate-spin w-4 h-4" />
+                <Loader className="animate-spin w-4 h-4" />
               ) : isEditing ? (
                 <Check className="h-4 w-4" />
               ) : (
@@ -63,7 +72,29 @@ const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
               )}
             </Button>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+
+          <div className="flex items-center gap-4">
+            <Avatar className="w-20 h-20">
+              <AvatarImage
+                src="/placeholder.svg?height=80&width=80"
+                alt={`${data.first_name} ${data.last_name}`}
+              />
+              <AvatarFallback>
+                {data.first_name[0]}
+                {data.last_name[0]}
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <h3 className="text-xl font-semibold">{`${data.first_name} ${data.last_name}`}</h3>
+              {/* <p className="text-sm text-muted-foreground">{data.email}</p> */}
+              <div className="mt-2 flex items-center">
+                <Heart className="w-4 h-4 text-green-500 mr-1" />
+                <span className="text-sm font-medium">Health Status: Good</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 max-w-[30rem] mx-auto w-full">
             {Object.entries(data).map(([key, value]) => (
               <div key={key} className="flex flex-col">
                 <label
@@ -88,6 +119,27 @@ const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
                 )}
               </div>
             ))}
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold mb-3">Quick Stats</h4>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="flex flex-col items-center">
+                <Heart className="w-8 h-8 text-red-500 mb-1" />
+                <span className="text-sm font-medium">Heart Rate</span>
+                <span className="text-lg font-bold">72 bpm</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <Activity className="w-8 h-8 text-blue-500 mb-1" />
+                <span className="text-sm font-medium">Activity</span>
+                <Progress value={75} className="w-16 h-2 mt-1" />
+              </div>
+              <div className="flex flex-col items-center">
+                <Thermometer className="w-8 h-8 text-yellow-500 mb-1" />
+                <span className="text-sm font-medium">Temperature</span>
+                <span className="text-lg font-bold">98.6°F</span>
+              </div>
+            </div>
           </div>
         </div>
       </SpotlightCard>
