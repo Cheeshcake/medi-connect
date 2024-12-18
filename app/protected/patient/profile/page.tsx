@@ -5,6 +5,7 @@ import { useGetPatientInfo } from "@/hooks/patient/use-get-patient-info";
 import ProfileCardSkeleton from "@/components/patient/skeletons/profile-card-skeletn";
 import { useEditPatient } from "@/hooks/patient/use-edit-patient";
 import { TPatientInfo } from "@/types/patient";
+import { PatientChart } from "@/components/patient/patient-chart";
 
 const Page = () => {
   const { patientInfo, isGettingPatient } = useGetPatientInfo();
@@ -22,22 +23,24 @@ const Page = () => {
     editProfile({ data: formData });
   };
 
-  if (!patientInfo) {
-    return <div>No info available</div>;
-  }
-
   return (
     <div className="mx-auto py-8">
       <h1 className="text-3xl text-primary font-bold mb-6">Profile Overview</h1>
-      {isGettingPatient ? (
-        <ProfileCardSkeleton />
-      ) : (
-        <ProfileCard
-          initialData={patientInfo}
-          onSave={handleSave}
-          isLoading={isEditingProfile}
-        />
-      )}
+      <div className="w-full flex flex-col gap-8">
+        <div className="flex gap-4 w-full">
+          {isGettingPatient ? (
+            <ProfileCardSkeleton />
+          ) : (
+            <ProfileCard
+              initialData={patientInfo}
+              onSave={handleSave}
+              isLoading={isEditingProfile}
+            />
+          )}
+          <div className="w-fit">this is gonna be for the ilnesses</div>
+        </div>
+        <PatientChart />
+      </div>
     </div>
   );
 };

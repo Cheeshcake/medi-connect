@@ -43,8 +43,8 @@ const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
   };
 
   return (
-    <motion.div variants={item}>
-      <SpotlightCard className="bg-white/30 dark:bg-white/10 border-border max-w-[30rem] min-h-[11rem] transition-all duration-300 ease-in-out hover:-translate-y-1.5">
+    <motion.div className="w-full max-w-[30rem] min-h-[11rem]" variants={item}>
+      <SpotlightCard className="bg-white/30 dark:bg-white/10 border-border  transition-all duration-300 ease-in-out hover:-translate-y-1.5">
         <div className="z-10 relative flex flex-col gap-4 ">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl font-semibold">Your Personal Info</h2>

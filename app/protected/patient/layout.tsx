@@ -27,7 +27,7 @@ const Layout = ({ children }: Props) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex flex-col bg-patient-bg-gradient h-screen ">
+      <div className="flex flex-col bg-patient-bg-gradient min-h-screen ">
         <div className="w-full flex justify-between items-center py-3 px-6">
           <Link href={"/protected/patient"} className="flex justify-center">
             <Image
