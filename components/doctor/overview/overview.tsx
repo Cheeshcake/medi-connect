@@ -59,19 +59,19 @@ export function Overview() {
       <BarChart data={data}>
         <XAxis
           dataKey="name"
-          stroke="#0099ff"
+          stroke="hsl(var(--primary))"
           fontSize={12}
           tickLine={false}
           axisLine={false}
         />
         <YAxis
-          stroke="#0099ff"
+          stroke="hsl(var(--primary))"
           fontSize={12}
           tickLine={false}
           axisLine={false}
           tickFormatter={(value: any) => `$${value}`}
         />
-        <Bar dataKey="total" fill="#0099ff" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="total" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );

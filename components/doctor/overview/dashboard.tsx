@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarDateRangePicker } from "@/components/doctor/overview/date-range-picker";
-import { Overview } from "@/components/doctor/overview/overview";
 import { RecentPatients } from "@/components/doctor/overview/recent-patients";
 import { UpcomingAppointments } from "@/components/doctor/overview/upcoming-appointments";
+import { PatientsChart } from "./patients-chart";
 
 export default function Dashboard() {
   return (
@@ -72,14 +72,7 @@ export default function Dashboard() {
           </Card>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-          <Card className="col-span-4">
-            <CardHeader>
-              <CardTitle>Overview</CardTitle>
-            </CardHeader>
-            <CardContent className="pl-2">
-              <Overview />
-            </CardContent>
-          </Card>
+          <PatientsChart />
           <Card className="col-span-3">
             <CardHeader>
               <CardTitle>Recent Patients</CardTitle>

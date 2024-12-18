@@ -17,6 +17,16 @@ const recentPatients = [
     avatar: "https://api.dicebear.com/9.x/micah/svg",
   },
   {
+    name: "William Davis",
+    email: "william.davis1@example.com",
+    avatar: "https://api.dicebear.com/9.x/micah/svg",
+  },
+  {
+    name: "Emma Wilson",
+    email: "emma.wilson12@example.com",
+    avatar: "https://api.dicebear.com/9.x/micah/svg",
+  },
+  {
     name: "James Brown",
     email: "james.brown@example.com",
     avatar: "https://api.dicebear.com/9.x/micah/svg",
