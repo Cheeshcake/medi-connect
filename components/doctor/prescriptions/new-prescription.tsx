@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/select";
 import { useGetPatients } from "@/hooks/doctor/use-get-patients";
 import { useAddPrescription } from "@/hooks/doctor/use-add-prescription";
+import { Loader2 } from "lucide-react";
 
 const prescriptionSchema = z.object({
   id_patient: z.string({
@@ -65,8 +66,6 @@ export function PrescriptionForm() {
   }
   const { data, isLoading, isError, error } = useGetPatients();
   if (data) console.log("data", data);
-
-
 
   if (err) {
     toast.error((err as Error).message);
@@ -143,7 +142,18 @@ export function PrescriptionForm() {
             <Button variant={"secondary"} type="reset">
               Clear
             </Button>
-            <Button type="submit">Add Prescription</Button>
+            <Button type="submit">
+              {loading ? (
+                <>
+                  <div className="flex items-center gap-2">
+                    <Loader2 className="animate-spin" />
+                    Creating
+                  </div>
+                </>
+              ) : (
+                "Create"
+              )}
+            </Button>
           </div>
         </form>
       </Form>
