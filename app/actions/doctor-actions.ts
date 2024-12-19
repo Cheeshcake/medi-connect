@@ -181,3 +181,26 @@ export const getDoctorAppointmentsAction = async (id: string) => {
     data: appointmentsData,
   };
 };
+
+export const changeAppointmentStatusAction = async (
+  id: string,
+  status: string
+) => {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("consultation")
+    .update({ status })
+    .eq("id", id);
+
+  if (error || !data) {
+    return {
+      error: error?.message || "Error updating appointment status",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: data,
+  };
+};
