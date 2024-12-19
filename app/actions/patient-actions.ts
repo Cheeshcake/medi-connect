@@ -1,5 +1,5 @@
 "use server";
-import { GetDoctorsResponse } from "@/types/doctor";
+import { GetDoctorByIdResponse, GetDoctorsResponse } from "@/types/doctor";
 import { GetPatientInfoResponse } from "@/types/patient";
 import { createClient } from "@/utils/supabase/server";
 import { encodedRedirect } from "@/utils/utils";
@@ -181,5 +181,29 @@ export const getDoctorsAction = async (): Promise<GetDoctorsResponse> => {
   return {
     error: null,
     data: doctorsData || [],
+  };
+};
+
+export const getDoctorByIdAction = async (
+  doctorId: string
+): Promise<GetDoctorByIdResponse> => {
+  const supabase = await createClient();
+
+  const { data: doctorData, error: doctorError } = await supabase
+    .from("doctor")
+    .select("*")
+    .eq("id", doctorId)
+    .single();
+
+  if (doctorError || !doctorData) {
+    return {
+      error: doctorError?.message || "Doctor not found",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: doctorData,
   };
 };

@@ -24,7 +24,7 @@ type DoctorProfileInfoProps = {
 
 export const DoctorProfileInfo = ({ doctor }: DoctorProfileInfoProps) => {
   return (
-    <>
+    <div className="lg:pb-[120px]">
       <SpotlightCard className="bg-white/30 dark:bg-white/10 border-border mb-8">
         <div className="flex flex-col md:flex-row items-start gap-6 p-6">
           <Avatar className="w-32 h-32">
@@ -125,6 +125,6 @@ export const DoctorProfileInfo = ({ doctor }: DoctorProfileInfoProps) => {
           </ul>
         </CardContent>
       </SpotlightCard>
-    </>
+    </div>
   );
 };

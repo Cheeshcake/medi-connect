@@ -31,3 +31,8 @@ export type GetDoctorsResponse = {
   error: string | null;
   data: TDoctorInfo[] | null;
 };
+
+export type GetDoctorByIdResponse = {
+  error: string | null;
+  data: TDoctorInfo | null;
+};

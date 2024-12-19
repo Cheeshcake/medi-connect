@@ -2,12 +2,25 @@ import React from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import SpotlightCard from "@/components/spotlight/spotlight-card";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 const DoctorProfileSkeleton = () => {
   return (
-    <div className="container mx-auto py-8">
+    <div className="mx-auto py-8">
+      <Link href={"/protected/patient/doctors"} className="pointer-events-none">
+        <Button
+          disabled
+          variant={"ghost"}
+          className="text-primary hover:text-primary/70 hover:bg-transparent pl-0"
+        >
+          <ArrowLeft />
+          Go back to list of doctors
+        </Button>
+      </Link>
       <h1 className="text-3xl text-primary font-bold mb-6">Doctor Profile</h1>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <div className="lg:col-span-2">
           <SpotlightCard className="bg-white/30 dark:bg-white/10 border-border mb-8">
             <div className="flex flex-col md:flex-row  items-start gap-6 p-6">
@@ -62,7 +75,7 @@ const DoctorProfileSkeleton = () => {
           ))}
         </div>
 
-        <div>
+        <div className="col-span-2">
           <SpotlightCard className="bg-white/30 dark:bg-white/10 border-border sticky top-8">
             <CardHeader>
               <Skeleton className="bg-primary-100 h-6 w-48 mb-2" />
@@ -70,11 +83,7 @@ const DoctorProfileSkeleton = () => {
             </CardHeader>
             <CardContent>
               <Skeleton className="bg-primary-100 h-64 w-full mb-4" />
-              <div className="grid grid-cols-3 gap-2 mb-4">
-                {[0, 1, 2, 3, 4, 5].map((i) => (
-                  <Skeleton key={i} className=" bg-primary-100 h-10 w-full" />
-                ))}
-              </div>
+
               <Skeleton className="bg-primary-100 h-10 w-full" />
             </CardContent>
           </SpotlightCard>

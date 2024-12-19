@@ -1,13 +1,20 @@
 "use client";
 
 import React from "react";
-import { useGetDoctor } from "@/hooks/patient/use-get-doctor";
 import DoctorProfileSkeleton from "@/components/patient/skeletons/doctor-profile-skeleton";
 import { DoctorProfileInfo } from "@/components/patient/doctor-profile-info";
 import { DoctorBooking } from "@/components/patient/doctor-booking";
+import { useGetDoctorById } from "@/hooks/patient/use-get-doctor";
+import { useParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 const DoctorProfilePage = () => {
-  const { data: doctor, isLoading, error } = useGetDoctor();
+  const { id } = useParams();
+  const { data: doctor, isLoading, error } = useGetDoctorById(id as string);
+
+  console.log(id);
 
   const handleBookAppointment = (date: Date, time: string) => {
     // This function will be implemented later to open the NiceModal dialog
@@ -20,6 +27,15 @@ const DoctorProfilePage = () => {
 
   return (
     <div className="mx-auto py-8">
+      <Link href={"/protected/patient/doctors"}>
+        <Button
+          variant={"ghost"}
+          className="text-primary hover:text-primary/70 hover:bg-transparent pl-0"
+        >
+          <ArrowLeft />
+          Go back to list of doctors
+        </Button>
+      </Link>
       <h1 className="text-3xl text-primary font-bold mb-6">Doctor Profile</h1>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <div className="lg:col-span-2">
