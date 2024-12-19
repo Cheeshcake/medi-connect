@@ -204,3 +204,69 @@ export const changeAppointmentStatusAction = async (
     data: data,
   };
 };
+
+export const addPrescriptionAction = async (prescription: {
+  id_patient: string;
+  content: string;
+}) => {
+  const supabase = await createClient();
+  const { id_patient, content } = prescription;
+  const { data, error } = await supabase.from("prescription").insert({
+    id_patient: id_patient,
+    content: content,
+  });
+
+  if (error) {
+    return {
+      error: error.message,
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: data,
+  };
+};
+
+export const getPrescriptionsAction = async () => {
+  const supabase = await createClient();
+  const { data: prescriptionsData, error: prescriptionsError } = await supabase
+    .from("prescription")
+    .select(
+      `
+    *,
+    patient:id_patient(*)
+  `
+    )
+    .returns<Array<any>>();
+  if (prescriptionsError || !prescriptionsData) {
+    return {
+      error: prescriptionsError?.message || "Prescriptions not found",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: prescriptionsData,
+  };
+};
+
+
+export const deletePrescriptionAction = async (id: string) => {
+  const supabase = await createClient();
+  const { data, error } = await supabase.from("prescription").delete().eq("id", id);
+
+  if (error) {
+    return {
+      error: error.message,
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: data,
+  };
+};

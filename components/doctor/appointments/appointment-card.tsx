@@ -71,7 +71,7 @@ const AppointmentCard: React.FC<AppointmentCardProps> = ({
         <p>
           <strong>Reason:</strong> {appointment.reason}
         </p>
-        <div className="mt-4 space-x-2">
+        <div className="mt-4 flex justify-around">
           <Dialog>
             <DialogTrigger asChild>
               <Button
@@ -121,7 +121,7 @@ const AppointmentCard: React.FC<AppointmentCardProps> = ({
                 {isLoading ? (
                   <Loader2 className="animate-spin" />
                 ) : (
-                  "Mark as Completed"
+                  "Completed"
                 )}
               </Button>
               <Button

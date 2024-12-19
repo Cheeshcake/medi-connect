@@ -3,7 +3,7 @@ import { useDoctor } from "@/app/providers/doctor-provider";
 import AppointmentsList from "@/components/doctor/appointments/appointments-list";
 import SkeletonAppointment from "@/components/doctor/appointments/skeleton-appointment";
 import { useGetAppointments } from "@/hooks/doctor/use-get-appointments";
-import React, { useContext } from "react";
+import React from "react";
 export default function DoctorAppointmentsPage() {
   const { doctor } = useDoctor();
   const {
@@ -21,9 +21,7 @@ export default function DoctorAppointmentsPage() {
             <SkeletonAppointment />
             <SkeletonAppointment />
             <SkeletonAppointment />
-            <SkeletonAppointment />
-            <SkeletonAppointment />
-            <SkeletonAppointment />
+
             
         </div>
       ) : isError ? (

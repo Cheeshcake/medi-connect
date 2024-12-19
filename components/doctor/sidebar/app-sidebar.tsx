@@ -27,11 +27,6 @@ import { NavUser } from "./nav-user";
 import Link from "next/link";
 
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "https://api.dicebear.com/9.x/lorelei/svg?backgroundType=gradientLinear,solid",
-  },
   navMain: [
     {
       title: "Overview",
@@ -51,10 +46,10 @@ const data = {
           title: "All Patients",
           href: "/protected/doctor/patients",
         },
-        {
-          title: "Patient Records",
-          href: "/protected/doctor/patients/records",
-        },
+        // {
+        //   title: "Patient Records",
+        //   href: "/protected/doctor/patients/records",
+        // },
       ],
     },
     {
@@ -79,10 +74,10 @@ const data = {
           title: "New Prescription",
           href: "/protected/doctor/prescriptions/new",
         },
-        {
-          title: "Medication History",
-          href: "/protected/doctor/prescriptions/history",
-        },
+        // {
+        //   title: "Medication History",
+        //   href: "/protected/doctor/prescriptions/history",
+        // },
       ],
     },
     {
