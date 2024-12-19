@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import SpotlightCard from "../spotlight/spotlight-card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 import {
   Edit2,
@@ -15,6 +14,7 @@ import {
   Thermometer,
 } from "lucide-react";
 import { TPatientInfo } from "@/types/patient";
+import { AvatarUpload } from "../uploadthing/avatar-upload";
 
 type ProfileCardProps = {
   initialData: TPatientInfo;
@@ -51,6 +51,10 @@ const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  const handleAvatarChange = (url: string | null) => {
+    setData({ ...data, image_url: url || "" });
+  };
+
   return (
     <motion.div className="w-full md:max-w-[30rem]" variants={item}>
       <SpotlightCard className="bg-white/30 dark:bg-white/10 border-border h-full transition-all duration-300 ease-in-out hover:-translate-y-1.5">
@@ -73,20 +77,16 @@ const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
             </Button>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Avatar className="w-20 h-20">
-              <AvatarImage
-                src="/placeholder.svg?height=80&width=80"
-                alt={`${data.first_name} ${data.last_name}`}
-              />
-              <AvatarFallback>
-                {data.first_name[0].toUpperCase()}
-                {data.last_name[0].toUpperCase()}
-              </AvatarFallback>
-            </Avatar>
+          <div className="flex gap-2 items-center">
+            <AvatarUpload
+              initialImageUrl={data.image_url}
+              onAvatarChange={handleAvatarChange}
+              name={`${data.first_name} ${data.last_name}`}
+              isEditing={isEditing}
+            />
+
             <div>
               <h3 className="text-xl font-semibold">{`${data.first_name} ${data.last_name}`}</h3>
-              {/* <p className="text-sm text-muted-foreground">{data.email}</p> */}
               <div className="mt-2 flex items-center">
                 <Heart className="w-4 h-4 text-green-500 mr-1" />
                 <span className="text-sm font-medium">Health Status: Good</span>
@@ -97,7 +97,8 @@ const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
           <div className="grid grid-cols-2 gap-4 max-w-[30rem] mx-auto w-full">
             {Object.entries(data).map(
               ([key, value]) =>
-                key !== "illnesses" && (
+                key !== "illnesses" &&
+                key !== "image_url" && (
                   <div key={key} className="flex flex-col">
                     <label
                       htmlFor={key}

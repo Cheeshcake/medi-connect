@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import UserNav from "@/components/user/user-nav";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/sonner";
+import { useGetPatientInfo } from "@/hooks/patient/use-get-patient-info";
 
 type Props = {
   children: React.ReactNode;

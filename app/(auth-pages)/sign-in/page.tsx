@@ -10,7 +10,7 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
   const searchParams = await props.searchParams;
 
   return (
-    <Card className=" w-full max-w-[20rem] mx-auto p-5 shadow-md">
+    <Card className=" w-full max-w-[20rem] mx-auto mt-[25vh] p-5 shadow-md">
       <form className="flex-1 flex flex-col">
         <h1 className="text-2xl font-medium">Sign in</h1>
         <p className="text-sm text-foreground">

@@ -14,6 +14,7 @@ import {
 import { motion, useAnimationControls } from "framer-motion";
 
 import { useEffect, useState } from "react";
+import { TPatientInfo } from "@/types/patient";
 
 export const svgVariants = {
   close: {
@@ -24,7 +25,11 @@ export const svgVariants = {
   },
 };
 
-const UserDropdown = () => {
+type UserDropdownProps = {
+  user: TPatientInfo;
+};
+
+const UserDropdown = ({ user }: UserDropdownProps) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const svgControls = useAnimationControls();
 
@@ -48,7 +53,7 @@ const UserDropdown = () => {
             <AvatarImage
               loading="lazy"
               className="h-10 w-10"
-              src={""}
+              src={user.image_url || ""}
               width={200}
               height={200}
             />
@@ -93,7 +98,9 @@ const UserDropdown = () => {
       >
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-2">
-            <p className="text-sm font-medium leading-none">Aziz</p>
+            <p className="text-sm font-medium leading-none">
+              {user.first_name || "N/A"}
+            </p>
             <p className="text-sm leading-none text-muted-foreground">
               mohamedaziz@gmail.com
             </p>
