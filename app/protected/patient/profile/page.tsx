@@ -2,7 +2,7 @@
 import React from "react";
 import ProfileCard from "@/components/patient/profile-card";
 import { useGetPatientInfo } from "@/hooks/patient/use-get-patient-info";
-import ProfileCardSkeleton from "@/components/patient/skeletons/profile-card-skeletn";
+import ProfileCardSkeleton from "@/components/patient/skeletons/profile-card-skeleton";
 import { useEditPatient } from "@/hooks/patient/use-edit-patient";
 import { TPatientInfo } from "@/types/patient";
 import { PatientChart } from "@/components/patient/patient-chart";

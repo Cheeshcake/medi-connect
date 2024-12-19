@@ -14,18 +14,6 @@ import { Search } from "lucide-react";
 import DoctorCard from "./doctor-card";
 import { TDoctorInfo } from "@/types/patient";
 
-// type Doctor = {
-//   id: number;
-//   name: string;
-//   specialty: string;
-//   rating: number;
-//   location: string;
-//   availableSlots: number;
-//   imageUrl: string;
-//   patients: number;
-//   experience: number;
-// };
-
 type DoctorsListProps = {
   doctors: TDoctorInfo[];
 };
