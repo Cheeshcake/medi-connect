@@ -12,21 +12,22 @@ import {
 } from "@/components/ui/select";
 import { Search } from "lucide-react";
 import DoctorCard from "./doctor-card";
+import { TDoctorInfo } from "@/types/patient";
 
-type Doctor = {
-  id: number;
-  name: string;
-  specialty: string;
-  rating: number;
-  location: string;
-  availableSlots: number;
-  imageUrl: string;
-  patients: number;
-  experience: number;
-};
+// type Doctor = {
+//   id: number;
+//   name: string;
+//   specialty: string;
+//   rating: number;
+//   location: string;
+//   availableSlots: number;
+//   imageUrl: string;
+//   patients: number;
+//   experience: number;
+// };
 
 type DoctorsListProps = {
-  doctors: Doctor[];
+  doctors: TDoctorInfo[];
 };
 
 const specialties = [
@@ -40,12 +41,12 @@ const specialties = [
 
 export function DoctorsList({ doctors }: DoctorsListProps) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedSpecialty, setSelectedSpecialty] = useState("All");
+  const [selectedSpeciality, setSelectedSpeciality] = useState("All");
 
   const filteredDoctors = doctors.filter(
     (doctor) =>
       doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (selectedSpecialty === "All" || doctor.specialty === selectedSpecialty)
+      (selectedSpeciality === "All" || doctor.speciality === selectedSpeciality)
   );
 
   return (
@@ -64,7 +65,10 @@ export function DoctorsList({ doctors }: DoctorsListProps) {
             size={20}
           />
         </div>
-        <Select value={selectedSpecialty} onValueChange={setSelectedSpecialty}>
+        <Select
+          value={selectedSpeciality}
+          onValueChange={setSelectedSpeciality}
+        >
           <SelectTrigger className="w-full md:w-[200px]  bg-patient-background ">
             <SelectValue placeholder="Select specialty" />
           </SelectTrigger>

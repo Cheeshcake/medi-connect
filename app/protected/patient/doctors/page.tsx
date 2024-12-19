@@ -2,6 +2,7 @@
 
 import React from "react";
 import { DoctorsList } from "@/components/patient/doctors-list";
+import { useGetDoctors } from "@/hooks/patient/use-get-doctors";
 
 // Mock data for doctors
 const doctors = [
@@ -63,6 +64,11 @@ const doctors = [
 ];
 
 const Page = () => {
+  const { doctors, doctorsError, isGettingDoctors } = useGetDoctors();
+
+  if (!doctors) {
+    return <div>No Doctors Found</div>;
+  }
   return (
     <div className=" mx-auto">
       <h1 className="text-3xl text-primary font-bold mb-6">Find a Doctor</h1>
