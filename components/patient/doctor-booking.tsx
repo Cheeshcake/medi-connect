@@ -73,7 +73,7 @@ export const DoctorBooking: React.FC<DoctorBookingProps> = ({ onBook }) => {
         <CardContent>
           <div className="mb-4">
             <div className="flex justify-between items-center mb-2">
-              <Button variant="outline" size="icon" onClick={handlePrevMonth}>
+              <Button variant="ghost" size="icon" onClick={handlePrevMonth}>
                 <ChevronLeft className="h-4 w-4" />
               </Button>
               <span className="font-medium">
@@ -82,7 +82,7 @@ export const DoctorBooking: React.FC<DoctorBookingProps> = ({ onBook }) => {
                   year: "numeric",
                 })}
               </span>
-              <Button variant="outline" size="icon" onClick={handleNextMonth}>
+              <Button variant="ghost" size="icon" onClick={handleNextMonth}>
                 <ChevronRight className="h-4 w-4" />
               </Button>
             </div>
