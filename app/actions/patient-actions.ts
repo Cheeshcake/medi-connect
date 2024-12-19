@@ -1,5 +1,10 @@
 "use server";
-import { GetDoctorsResponse, GetPatientInfoResponse } from "@/types/patient";
+import { GetDoctorByIdResponse, GetDoctorsResponse } from "@/types/doctor";
+import {
+  Appointment,
+  BookAppointmentResponse,
+  GetPatientInfoResponse,
+} from "@/types/patient";
 import { createClient } from "@/utils/supabase/server";
 import { encodedRedirect } from "@/utils/utils";
 import { redirect } from "next/navigation";
@@ -180,5 +185,88 @@ export const getDoctorsAction = async (): Promise<GetDoctorsResponse> => {
   return {
     error: null,
     data: doctorsData || [],
+  };
+};
+
+export const getDoctorByIdAction = async (
+  doctorId: string
+): Promise<GetDoctorByIdResponse> => {
+  const supabase = await createClient();
+
+  const { data: doctorData, error: doctorError } = await supabase
+    .from("doctor")
+    .select("*")
+    .eq("id", doctorId)
+    .single();
+
+  if (doctorError || !doctorData) {
+    return {
+      error: doctorError?.message || "Doctor not found",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: doctorData,
+  };
+};
+
+export const bookAppointmentAction = async ({
+  id_doctor,
+  date,
+  time,
+  reason,
+  message,
+}: Appointment) => {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  console.log("User Data:", user, "Error:", userError);
+
+  if (userError || !user) {
+    return {
+      error: userError?.message || "User not authenticated",
+      data: null,
+    };
+  }
+
+  const userId = user.id;
+
+  console.log("Payload being inserted:", {
+    id_patient: userId,
+    id_doctor,
+    date,
+    time,
+    reason,
+    message,
+  });
+
+  const { data: appointmentData, error: appointmentError } = await supabase
+    .from("consultation")
+    .insert({
+      id_patient: userId,
+      id_doctor,
+      date,
+      time,
+      reason,
+      message,
+    });
+
+  if (appointmentError) {
+    console.error("Supabase Insert Error:", appointmentError);
+    return {
+      error: appointmentError.message || "Failed to book appointment",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: appointmentData,
   };
 };

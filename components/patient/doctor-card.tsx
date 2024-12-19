@@ -7,7 +7,7 @@ import { MapPin, Star, Users, Clock, Calendar } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import SpotlightCard from "../spotlight/spotlight-card";
-import { TDoctorInfo } from "@/types/patient";
+import { TDoctorInfo } from "@/types/doctor";
 
 type DoctorCardProps = {
   doctor: TDoctorInfo;
@@ -65,7 +65,10 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
               <span className="text-sm font-medium">Next available: Today</span>
             </div>
           </div>
-          <Link href={`/patient/doctors/${doctor.id}`} className="w-full ">
+          <Link
+            href={`/protected/patient/doctors/${doctor.id}`}
+            className="w-full "
+          >
             <Button className="w-full">View Profile & Book</Button>
           </Link>
         </div>

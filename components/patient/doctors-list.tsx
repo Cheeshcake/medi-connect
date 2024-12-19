@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -12,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import { Search } from "lucide-react";
 import DoctorCard from "./doctor-card";
-import { TDoctorInfo } from "@/types/patient";
+import { TDoctorInfo } from "@/types/doctor";
 
 type DoctorsListProps = {
   doctors: TDoctorInfo[];

@@ -1,3 +1,5 @@
+import { DoctorCertification, DoctorEducation } from "./doctor";
+
 export type TPatientInfo = {
   first_name: string;
   last_name: string;
@@ -11,21 +13,15 @@ export type GetPatientInfoResponse = {
   data: TPatientInfo | null;
 };
 
-export type TDoctorInfo = {
-  id: number;
-  name: string;
-  phone: string;
-  image_url: string;
-  speciality: string;
-  experience: number;
-  rating: number;
-  location: string;
-  num_patients: number;
-  slots: number;
-  created_at: Date;
+export type Appointment = {
+  id_doctor: string;
+  date: string;
+  time: string;
+  reason: string;
+  message: string;
 };
 
-export type GetDoctorsResponse = {
+export type BookAppointmentResponse = {
   error: string | null;
-  data: TDoctorInfo[] | null;
+  data: Appointment | null;
 };
