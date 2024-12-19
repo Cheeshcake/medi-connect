@@ -14,18 +14,17 @@ const Page = () => {
 
   const { editProfile, isEditingProfile } = useEditPatient();
 
-  console.log(patientInfo.illnesses);
   const handleSave = (newData: TPatientInfo) => {
-    console.log("Saving updated patient data:", newData);
-
     const formData = new FormData();
     formData.append("first_name", newData.first_name);
     formData.append("last_name", newData.last_name);
     formData.append("phone", newData.phone);
+    if (newData.image_url !== undefined) {
+      formData.append("image_url", newData.image_url || "");
+    }
 
     editProfile({ data: formData });
   };
-
   return (
     <div className="mx-auto py-8">
       <h1 className="text-3xl text-primary font-bold mb-6">Profile Overview</h1>

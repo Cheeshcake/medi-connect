@@ -19,7 +19,7 @@ const DoctorCard = ({ doctor }: DoctorCardProps) => {
       <div className="z-10 relative flex flex-col justify-between h-full gap-4">
         <div className="flex items-start gap-4">
           <Avatar className="w-20 h-20">
-            {/* <AvatarImage src={doctor.imageUrl} alt={doctor.name} /> */}
+            <AvatarImage src={doctor.image_url || ""} alt={doctor.name} />
             <AvatarFallback className="bg-primary text-white dark:text-neutral-800 font-medium">
               {doctor.name
                 .split(" ")

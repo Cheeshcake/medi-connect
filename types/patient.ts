@@ -3,6 +3,7 @@ export type TPatientInfo = {
   last_name: string;
   phone: string;
   illnesses: string[];
+  image_url: string;
 };
 
 export type GetPatientInfoResponse = {
@@ -14,6 +15,7 @@ export type TDoctorInfo = {
   id: number;
   name: string;
   phone: string;
+  image_url: string;
   speciality: string;
   experience: number;
   rating: number;
