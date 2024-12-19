@@ -10,11 +10,11 @@ import {
 import SpotlightCard from "@/components/spotlight/spotlight-card";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-type DoctorBookingProps = {
-  onBook: (date: Date, time: string) => void;
-};
+interface DoctorBookingProps {
+  onBook: (date: string, time: string) => void;
+}
 
-export const DoctorBooking = ({ onBook }: DoctorBookingProps) => {
+export const DoctorBooking: React.FC<DoctorBookingProps> = ({ onBook }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -55,7 +55,7 @@ export const DoctorBooking = ({ onBook }: DoctorBookingProps) => {
 
   const handleBookAppointment = () => {
     if (selectedDate && selectedTime) {
-      onBook(selectedDate, selectedTime);
+      onBook(selectedDate.toISOString(), selectedTime);
     }
   };
 
@@ -66,14 +66,14 @@ export const DoctorBooking = ({ onBook }: DoctorBookingProps) => {
       <div className="z-10 relative w-full">
         <CardHeader>
           <CardTitle>Book a Consultation</CardTitle>
-          <CardDescription className="text-patient-secondary-text">
+          <CardDescription>
             Select a date and time for your appointment
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="mb-4">
             <div className="flex justify-between items-center mb-2">
-              <Button variant="ghost" size="icon" onClick={handlePrevMonth}>
+              <Button variant="outline" size="icon" onClick={handlePrevMonth}>
                 <ChevronLeft className="h-4 w-4" />
               </Button>
               <span className="font-medium">
@@ -82,7 +82,7 @@ export const DoctorBooking = ({ onBook }: DoctorBookingProps) => {
                   year: "numeric",
                 })}
               </span>
-              <Button variant="ghost" size="icon" onClick={handleNextMonth}>
+              <Button variant="outline" size="icon" onClick={handleNextMonth}>
                 <ChevronRight className="h-4 w-4" />
               </Button>
             </div>

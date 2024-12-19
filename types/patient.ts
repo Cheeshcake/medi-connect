@@ -15,7 +15,7 @@ export type GetPatientInfoResponse = {
 
 export type Appointment = {
   id_doctor: string;
-  date: Date;
+  date: string;
   time: string;
   reason: string;
   message: string;

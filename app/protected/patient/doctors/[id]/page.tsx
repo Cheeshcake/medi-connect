@@ -15,7 +15,7 @@ const DoctorProfilePage = () => {
   const { id } = useParams();
   const { data: doctor, isLoading, error } = useGetDoctorById(id as string);
 
-  const handleBookAppointment = (date: Date, time: string) => {
+  const handleBookAppointment = (date: string, time: string) => {
     console.log("Booking appointment for:", date, time);
     showBookAppointmentDialog({
       doctorId: doctor?.id.toString() || "",

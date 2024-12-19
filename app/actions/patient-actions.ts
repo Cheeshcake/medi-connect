@@ -218,13 +218,15 @@ export const bookAppointmentAction = async ({
   time,
   reason,
   message,
-}: Appointment): Promise<BookAppointmentResponse> => {
+}: Appointment) => {
   const supabase = await createClient();
 
   const {
     data: { user },
     error: userError,
   } = await supabase.auth.getUser();
+
+  console.log("User Data:", user, "Error:", userError);
 
   if (userError || !user) {
     return {
@@ -235,20 +237,28 @@ export const bookAppointmentAction = async ({
 
   const userId = user.id;
 
+  console.log("Payload being inserted:", {
+    id_patient: userId,
+    id_doctor,
+    date,
+    time,
+    reason,
+    message,
+  });
+
   const { data: appointmentData, error: appointmentError } = await supabase
     .from("consultation")
     .insert({
       id_patient: userId,
       id_doctor,
-      date: date.toISOString(),
+      date,
       time,
       reason,
       message,
-    })
-    .select()
-    .single();
+    });
 
   if (appointmentError) {
+    console.error("Supabase Insert Error:", appointmentError);
     return {
       error: appointmentError.message || "Failed to book appointment",
       data: null,

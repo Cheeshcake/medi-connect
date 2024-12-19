@@ -7,16 +7,8 @@ import { toast } from "sonner";
 
 export const useAddAppointment = () => {
   const mutation = useMutation({
-    mutationFn: async (data: Appointment) => {
-      const { id_doctor, date, time, reason, message } = data;
-      return await bookAppointmentAction({
-        id_doctor,
-        date,
-        time,
-        reason,
-        message,
-      });
-    },
+    mutationFn: (data: Appointment) => bookAppointmentAction(data),
+
     onSuccess: () => {
       toast.success("Appointment booked successfully!");
       NiceModal.remove(BookAppointmentDialog);
