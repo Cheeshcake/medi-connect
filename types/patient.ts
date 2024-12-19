@@ -3,6 +3,7 @@ export type TPatientInfo = {
   last_name: string;
   phone: string;
   illnesses: string[];
+  image_url: string;
 };
 
 export type GetPatientInfoResponse = {
