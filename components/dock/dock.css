@@ -4,11 +4,13 @@
   height: 100%;
   pointer-events: none;
   display: flex;
+  z-index: 99;
 }
 
 .dock {
   display: flex;
   pointer-events: auto;
+
   background-color: hsl(var(--primary-foreground));
   border: 1px solid hsl(var(--border));
   padding: 0.4em;

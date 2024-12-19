@@ -12,7 +12,7 @@ export default async function Signup(props: {
   const searchParams = await props.searchParams;
 
   return (
-    <Card className=" w-full max-w-[20rem] mx-auto p-5 shadow-md">
+    <Card className=" w-full max-w-[20rem] mx-auto mt-[18vh] p-5 shadow-md">
       <form className="flex flex-col ">
         <h1 className="text-2xl font-medium">Sign up</h1>
         <p className="text-sm text text-foreground">

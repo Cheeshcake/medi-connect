@@ -80,8 +80,8 @@ const ProfileCard = ({ initialData, onSave, isLoading }: ProfileCardProps) => {
                 alt={`${data.first_name} ${data.last_name}`}
               />
               <AvatarFallback>
-                {data.first_name[0].toUpperCase()}
-                {data.last_name[0].toUpperCase()}
+                {data.first_name[0]?.toUpperCase() || "."}
+                {data.last_name[0]?.toUpperCase() || "."}
               </AvatarFallback>
             </Avatar>
             <div>
