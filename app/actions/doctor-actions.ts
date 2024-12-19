@@ -204,3 +204,27 @@ export const changeAppointmentStatusAction = async (
     data: data,
   };
 };
+
+export const addPrescriptionAction = async (prescription: {
+  id_patient: string;
+  content: string;
+}) => {
+  const supabase = await createClient();
+  const { id_patient, content } = prescription;
+  const { data , error } = await supabase.from("prescription").insert({
+    id_patient:id_patient,
+    content:content,
+  });
+
+  if (error) {
+    return {
+      error: error.message,
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: data,
+  };
+};
