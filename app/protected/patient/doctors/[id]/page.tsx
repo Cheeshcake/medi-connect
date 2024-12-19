@@ -9,16 +9,19 @@ import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { showBookAppointmentDialog } from "@/components/patient/book-appointment-dialog";
 
 const DoctorProfilePage = () => {
   const { id } = useParams();
   const { data: doctor, isLoading, error } = useGetDoctorById(id as string);
 
-  console.log(id);
-
   const handleBookAppointment = (date: Date, time: string) => {
-    // This function will be implemented later to open the NiceModal dialog
     console.log("Booking appointment for:", date, time);
+    showBookAppointmentDialog({
+      doctorId: doctor?.id.toString() || "",
+      date,
+      time,
+    });
   };
 
   if (isLoading) return <DoctorProfileSkeleton />;

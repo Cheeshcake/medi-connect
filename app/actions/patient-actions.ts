@@ -1,6 +1,10 @@
 "use server";
 import { GetDoctorByIdResponse, GetDoctorsResponse } from "@/types/doctor";
-import { GetPatientInfoResponse } from "@/types/patient";
+import {
+  Appointment,
+  BookAppointmentResponse,
+  GetPatientInfoResponse,
+} from "@/types/patient";
 import { createClient } from "@/utils/supabase/server";
 import { encodedRedirect } from "@/utils/utils";
 import { redirect } from "next/navigation";
@@ -205,5 +209,54 @@ export const getDoctorByIdAction = async (
   return {
     error: null,
     data: doctorData,
+  };
+};
+
+export const bookAppointmentAction = async ({
+  id_doctor,
+  date,
+  time,
+  reason,
+  message,
+}: Appointment): Promise<BookAppointmentResponse> => {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser();
+
+  if (userError || !user) {
+    return {
+      error: userError?.message || "User not authenticated",
+      data: null,
+    };
+  }
+
+  const userId = user.id;
+
+  const { data: appointmentData, error: appointmentError } = await supabase
+    .from("consultation")
+    .insert({
+      id_patient: userId,
+      id_doctor,
+      date: date.toISOString(),
+      time,
+      reason,
+      message,
+    })
+    .select()
+    .single();
+
+  if (appointmentError) {
+    return {
+      error: appointmentError.message || "Failed to book appointment",
+      data: null,
+    };
+  }
+
+  return {
+    error: null,
+    data: appointmentData,
   };
 };

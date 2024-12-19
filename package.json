@@ -44,7 +44,8 @@
     "react-query": "^3.39.3",
     "recharts": "^2.15.0",
     "sonner": "^1.7.1",
-    "uploadthing": "^7.4.1"
+    "uploadthing": "^7.4.1",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.62.1",

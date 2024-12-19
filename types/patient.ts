@@ -12,3 +12,16 @@ export type GetPatientInfoResponse = {
   error: string | null;
   data: TPatientInfo | null;
 };
+
+export type Appointment = {
+  id_doctor: string;
+  date: Date;
+  time: string;
+  reason: string;
+  message: string;
+};
+
+export type BookAppointmentResponse = {
+  error: string | null;
+  data: Appointment | null;
+};
