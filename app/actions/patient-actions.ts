@@ -1,5 +1,6 @@
 "use server";
-import { GetDoctorsResponse, GetPatientInfoResponse } from "@/types/patient";
+import { GetDoctorsResponse } from "@/types/doctor";
+import { GetPatientInfoResponse } from "@/types/patient";
 import { createClient } from "@/utils/supabase/server";
 import { encodedRedirect } from "@/utils/utils";
 import { redirect } from "next/navigation";
