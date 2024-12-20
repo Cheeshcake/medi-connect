@@ -28,7 +28,7 @@ export const DoctorInfo = ({ doctor }: DoctorProfileInfoProps) => {
       <div className="bg-white/30 dark:bg-white/10 border-border mb-8 rounded-3xl p-8 h-full">
         <div className="flex flex-col md:flex-row items-start gap-6 p-6">
           <Avatar className="w-32 h-32">
-            <AvatarImage src={doctor.image_url || ""} alt={doctor.name} />
+            <AvatarImage src={doctor.image_url || "avatar.jpg"} alt={doctor.name} />
             <AvatarFallback className="bg-primary text-white dark:text-neutral-800 text-2xl font-medium">
               {doctor.name
                 .split(" ")
