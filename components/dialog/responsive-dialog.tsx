@@ -16,7 +16,6 @@ import {
 import { useMediaQuery } from "../../hooks/use-media-query";
 import { Separator } from "../ui/separator";
 import { cn } from "../../lib/utils";
-import { X } from "lucide-react";
 
 type TResponsiveDialogProps = {
   children: React.ReactNode;
