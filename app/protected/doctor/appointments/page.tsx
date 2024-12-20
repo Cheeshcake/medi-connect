@@ -12,6 +12,7 @@ export default function DoctorAppointmentsPage() {
     isError,
     error,
   } = useGetAppointments(doctor?.id);
+  console.log(appointments);
 
   return (
     <div className="container mx-auto px-4 py-8">

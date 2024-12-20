@@ -1,6 +1,7 @@
-import { DoctorCertification, DoctorEducation } from "./doctor";
+
 
 export type TPatientInfo = {
+  id: string;
   first_name: string;
   last_name: string;
   phone: string;
@@ -14,6 +15,7 @@ export type GetPatientInfoResponse = {
 };
 
 export type Appointment = {
+  id_patient:string;
   id_doctor: string;
   date: string;
   time: string;

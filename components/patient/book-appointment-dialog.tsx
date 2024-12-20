@@ -9,13 +9,14 @@ import { Label } from "@/components/ui/label";
 import { useAddAppointment } from "@/hooks/patient/use-add-appointment";
 
 interface BookAppointmentDialogProps {
+  patientId: string;
   doctorId: string;
   date: string;
   time: string;
 }
 
 const BookAppointmentDialog = NiceModal.create(
-  ({ doctorId, date, time }: BookAppointmentDialogProps) => {
+  ({patientId , doctorId, date, time }: BookAppointmentDialogProps) => {
     const modal = useModal();
     const [reason, setReason] = useState("");
     const [message, setMessage] = useState("");
@@ -24,6 +25,7 @@ const BookAppointmentDialog = NiceModal.create(
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       await addAppointment({
+        id_patient:patientId,
         id_doctor: doctorId,
         date,
         time,
