@@ -120,7 +120,7 @@ export const getPatientsAction = async () => {
 
   const { data: patientsData, error: patientsError } = await supabase
     .from("patient")
-    .select("id, id_user, created_at, first_name, last_name, phone");
+    .select("id, id_user, created_at, first_name, last_name, phone, image_url");
 
   if (patientsError || !patientsData) {
     return {
