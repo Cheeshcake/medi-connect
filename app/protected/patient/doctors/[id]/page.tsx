@@ -10,15 +10,18 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { showBookAppointmentDialog } from "@/components/patient/book-appointment-dialog";
+import { useGetPatientInfo } from "@/hooks/patient/use-get-patient-info";
 
 const DoctorProfilePage = () => {
   const { id } = useParams();
   const { data: doctor, isLoading, error } = useGetDoctorById(id as string);
+  const {patientInfo} = useGetPatientInfo();
 
   const handleBookAppointment = (date: string, time: string) => {
     console.log("Booking appointment for:", date, time);
     showBookAppointmentDialog({
-      doctorId: doctor?.id.toString() || "",
+      doctorId: id?.toString() || "",
+      patientId: patientInfo?.id.toString() ||"",
       date,
       time,
     });

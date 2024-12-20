@@ -108,7 +108,7 @@ export const getPatientInfoAction =
 
     const { data: patientData, error: patientError } = await supabase
       .from("patient")
-      .select("first_name, last_name, phone,image_url, illnesses")
+      .select("id, first_name, last_name, phone,image_url, illnesses")
       .eq("id_user", userId)
       .single();
 
@@ -213,6 +213,7 @@ export const getDoctorByIdAction = async (
 };
 
 export const bookAppointmentAction = async ({
+  id_patient,
   id_doctor,
   date,
   time,
@@ -238,7 +239,7 @@ export const bookAppointmentAction = async ({
   const userId = user.id;
 
   console.log("Payload being inserted:", {
-    id_patient: userId,
+    id_patient: id_patient,
     id_doctor,
     date,
     time,
@@ -249,8 +250,8 @@ export const bookAppointmentAction = async ({
   const { data: appointmentData, error: appointmentError } = await supabase
     .from("consultation")
     .insert({
-      id_patient: userId,
-      id_doctor,
+      id_patient: id_patient,
+      id_doctor: id_doctor,
       date,
       time,
       reason,

@@ -30,6 +30,7 @@ import Link from "next/link";
 import { Eye } from "lucide-react";
 import { useGetPatients } from "@/hooks/doctor/use-get-patients";
 import { PatientsTableSkeleton } from "./patients-table-skeleton";
+import Image from "next/image";
 
 interface Patient {
   id: number;
@@ -37,10 +38,26 @@ interface Patient {
   created_at: string;
   first_name: string;
   last_name: string;
+  image_url: string;
   phone: string;
 }
 
 export const columns: ColumnDef<Patient>[] = [
+  {
+    id: "avatar",
+    header: "Avatar",
+    cell: ({ row }) => {
+      return (
+        <Image
+          src={row.original.image_url ?? "/avatar.jpg"}
+          alt={row.original.first_name}
+          width={5}
+          height={5}
+          className="w-10 h-10 rounded-full"
+        />
+      );
+    },
+  },
   {
     accessorKey: "first_name",
     header: "First Name",

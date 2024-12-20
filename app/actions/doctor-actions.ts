@@ -120,7 +120,7 @@ export const getPatientsAction = async () => {
 
   const { data: patientsData, error: patientsError } = await supabase
     .from("patient")
-    .select("id, id_user, created_at, first_name, last_name, phone");
+    .select("id, id_user, created_at, first_name, last_name, phone, image_url");
 
   if (patientsError || !patientsData) {
     return {
@@ -140,7 +140,7 @@ export const getPatientByIdAction = async (id: string) => {
 
   const { data: patientData, error: patientError } = await supabase
     .from("patient")
-    .select("*")
+    .select("id, first_name, last_name, phone,image_url, illnesses")
     .eq("id", id)
     .single();
 
@@ -253,10 +253,12 @@ export const getPrescriptionsAction = async () => {
   };
 };
 
-
 export const deletePrescriptionAction = async (id: string) => {
   const supabase = await createClient();
-  const { data, error } = await supabase.from("prescription").delete().eq("id", id);
+  const { data, error } = await supabase
+    .from("prescription")
+    .delete()
+    .eq("id", id);
 
   if (error) {
     return {
